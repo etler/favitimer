@@ -240,14 +240,17 @@
       });
       Array.prototype.forEach.call(document.getElementsByTagName('input'), function (input) {
         input.addEventListener('keypress', function (event) {
-          if (event.which < 48 || event.which > 57) {
+          if (event.keyCode && !event.charCode) {
+            return;
+          }
+          if ((event.charCode < 48 || event.charCode > 57) && !event.ctrlKey) {
             event.preventDefault();
           }
         });
         input.addEventListener('keyup', function (event) {
-          if (event.which === 13) {
+          if (event.keyCode === 13) {
             submit();
-          } else if (event.which >= 48 && event.which <= 57 && event.currentTarget.value.length >= 2) {
+          } else if (event.keyCode >= 48 && event.keyCode <= 57 && event.currentTarget.value.length >= 2) {
             var index = Array.prototype.indexOf.call(form.elements, event.currentTarget) + 1;
             if (form[index].tagName === 'INPUT') {
               form[index].focus();
