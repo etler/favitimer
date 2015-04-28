@@ -104,9 +104,15 @@
   </head>
   <body class="complete">
     <form id="form">
-      <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" autofocus />h
-      <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
-      <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="seconds" placeholder="0" autocomplete="off" pattern="\d*" />s
+      <label>
+        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" autofocus />h
+      </label>
+      <label>
+        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
+      </label>
+      <label>
+        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="seconds" placeholder="0" autocomplete="off" pattern="\d*" />s
+      </label>
       <button type="submit"></button>
     </form>
     <span id="text"></span>
