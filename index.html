@@ -63,12 +63,12 @@
       body.complete #start {
         display: block;
       }
+      body.complete #canvas {
+        display: none;
+      }
       body.pause #text {
         animation: blink 1s steps(2, end) infinite reverse;
         -webkit-animation: blink 1s steps(2, end) infinite reverse;
-      }
-      body.complete #canvas {
-        display: none
       }
       @keyframes blink {
         to {
