@@ -326,6 +326,7 @@
           stopInterval(beepInterval);
           draw(favicon, 0, totalTime);
           draw(canvas, 0);
+          write(totalTime);
           link.href = favicon.toDataURL('image/png');
           // Countdown interval setup
           interval = startInterval(startAnimation, 50)
