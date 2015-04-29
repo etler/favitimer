@@ -224,7 +224,7 @@
             title.text = 'Done!';
             text.innerHTML = titleText;
             beep();
-            beepInterval = setInterval(beep, 1100);
+            beepInterval = startInterval(beep, 1100);
             body.setAttribute('class', 'done');
           } else {
             title.text = titleText;
@@ -268,7 +268,7 @@
           };
           body.setAttribute('class', 'running');
           stopInterval(interval);
-          clearInterval(beepInterval);
+          stopInterval(beepInterval);
           draw(favicon, 0, totalTime);
           draw(canvas, 0);
           link.href = favicon.toDataURL('image/png');
@@ -325,7 +325,7 @@
           submit();
         }
         stop.addEventListener('click', function (event) {
-          clearInterval(beepInterval);
+          stopInterval(beepInterval);
           body.setAttribute('class', 'complete');
         });
         text.addEventListener('click', function (event) {
