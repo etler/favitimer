@@ -325,24 +325,26 @@
           startTimer(hours, minutes, seconds);
         }
         function executeSearch (search) {
-          var searchRegex = /(\d*\.?\d+)[\s+]*(se?c?o?n?d?s?|mi?n?u?t?e?s?|ho?u?r?s?|$)(?![a-z])/gi,
+          var searchRegex = /(?:\s|^)(\d*(?:\.|\s*\/\s*)?\d+)[\s+]*(se?c?o?n?d?s?|mi?n?u?t?e?s?|ho?u?r?s?|$)(?![a-z])/gi,
               hours = 0,
               minutes = 0,
               seconds = 0,
               totalTime = 0,
               match, unit;
+          search = search.replace(/\?\w+=/, '');
           while (match = searchRegex.exec(search)) {
             unit = match[2] || '';
+            // Eval allows for division. This is only as safe as the reg-ex parsing is.
             switch (unit[0]) {
               case 'm':
-                minutes = Number(match[1]);
+                minutes = eval(match[1]);
                 break;
               case 'h':
-                hours = Number(match[1]);
+                hours = eval(match[1]);
                 break;
               case 's':
               default:
-                seconds = Number(match[1]);
+                seconds = eval(match[1]);
                 break;
             }
           }
