@@ -75,6 +75,10 @@
         color: #333;
         cursor: pointer;
       }
+      .disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
       #stop, #text, #start {
         display: none;
       }
@@ -139,7 +143,7 @@
     </form>
     <span id="text"></span>
     <span id="stop">finish</span>
-    <span id="start">start</span>
+    <span id="start" class="disabled">start</span>
     <canvas id="canvas" width="240" height="240"></canvas>
     <div id="links">
       <a href="http://www.github.com/etler/favitimer">View Readme on GitHub</a>
@@ -384,6 +388,14 @@
             }
           });
           input.addEventListener('keyup', function (event) {
+            var hasValue = Array.prototype.some.call(form.elements, function (element) {
+              return element.value;
+            });
+            if (hasValue) {
+              start.removeAttribute('class');
+            } else {
+              start.setAttribute('class', 'disabled');
+            }
             if (event.keyCode === 13) {
               submit();
             } else if (event.keyCode >= 48 && event.keyCode <= 57 && event.currentTarget.value.length >= 2) {
