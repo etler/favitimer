@@ -409,6 +409,11 @@
           event.preventDefault();
           submit();
         });
+        document.addEventListener('keyup', function (event) {
+          if (event.keyCode === 13) {
+            submit();
+          }
+        });
         Array.prototype.forEach.call(document.getElementsByTagName('input'), function (input) {
           input.addEventListener('keypress', function (event) {
             if (event.keyCode && !event.charCode) {
@@ -427,9 +432,7 @@
             } else {
               start.setAttribute('class', 'disabled');
             }
-            if (event.keyCode === 13) {
-              submit();
-            } else if (event.keyCode >= 48 && event.keyCode <= 57 && event.currentTarget.value.length >= 2) {
+            if (event.keyCode >= 48 && event.keyCode <= 57 && event.currentTarget.value.length >= 2) {
               var index = Array.prototype.indexOf.call(form.elements, event.currentTarget) + 1;
               if (form[index].tagName === 'INPUT') {
                 form[index].focus();
