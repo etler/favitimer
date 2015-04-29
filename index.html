@@ -378,17 +378,17 @@
           hours = Math.floor(totalTime / (60 * 60)) % 60;
           minutes = Math.floor(totalTime / 60) % 60;
           seconds = Math.round(totalTime % 60);
-          form.elements['hours'].focus();
+          if (!hours && !minutes && !seconds) {
+            form.elements['hours'].focus();
+          }
           if (hours) {
             form.elements['hours'].value = hours;
           }
           if (minutes) {
             form.elements['minutes'].value = minutes;
-            form.elements['minutes'].focus();
           }
           if (seconds) {
             form.elements['seconds'].value = seconds;
-            form.elements['seconds'].focus();
           }
           submit();
         }
