@@ -251,6 +251,29 @@
           seconds = Number(form.elements['seconds'].value || '0');
           startTimer(hours, minutes, seconds);
         }
+        function executeSearch (search) {
+          var searchRegex = /(\d+)\s*(s(?:ec(?:ond)?s?)?|m(?:in(?:ute)?s?)?|h(?:(?:ou)?rs?)?|\b)(?![a-z])/gi,
+              hours = 0,
+              minutes = 0,
+              seconds = 0,
+              match, unit;
+          while (match = searchRegex.exec(search)) {
+            unit = match[2] || '';
+            switch (unit[0]) {
+              case 'm':
+                minutes = Number(match[1]);
+                break;
+              case 'h':
+                hours = Number(match[1]);
+                break;
+              case 's':
+              default:
+                seconds = Number(match[1]);
+                break;
+            }
+          }
+          startTimer(hours, minutes, seconds);
+        }
         stop.addEventListener('click', function (event) {
           clearInterval(beepInterval);
           body.setAttribute('class', 'complete');
@@ -291,6 +314,7 @@
         });
         draw(favicon, 1);
         link.href = favicon.toDataURL('image/png');
+        executeSearch(decodeURIComponent(window.location.search));
       })();
     </script>
   </body>
