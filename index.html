@@ -114,7 +114,7 @@
   <body class="complete">
     <form id="form">
       <label>
-        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" autofocus />h
+        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" />h
       </label>
       <label>
         <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
@@ -273,10 +273,19 @@
                 break;
             }
           }
-          form.elements['hours'].value = hours;
-          form.elements['minutes'].value = minutes;
-          form.elements['seconds'].value = seconds;
-          startTimer(hours, minutes, seconds);
+          form.elements['hours'].focus();
+          if (hours) {
+            form.elements['hours'].value = hours;
+          }
+          if (minutes) {
+            form.elements['minutes'].value = minutes;
+            form.elements['minutes'].focus();
+          }
+          if (seconds) {
+            form.elements['seconds'].value = seconds;
+            form.elements['seconds'].focus();
+          }
+          submit();
         }
         stop.addEventListener('click', function (event) {
           clearInterval(beepInterval);
