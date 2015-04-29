@@ -273,6 +273,9 @@
                 break;
             }
           }
+          form.elements['hours'].value = hours;
+          form.elements['minutes'].value = minutes;
+          form.elements['seconds'].value = seconds;
           startTimer(hours, minutes, seconds);
         }
         stop.addEventListener('click', function (event) {
