@@ -91,6 +91,19 @@
         animation: blink 1s steps(2, end) infinite reverse;
         -webkit-animation: blink 1s steps(2, end) infinite reverse;
       }
+      #links {
+        position: absolute;
+        bottom: 0;
+        right: 2em;
+        font-size: 11px;
+      }
+      a {
+        display: inline-block;
+        padding: 1em 0;
+        margin: 0 0.5em;
+        color: #333;
+        text-decoration: none;
+      }
       @keyframes blink {
         to {
           opacity: 0;
@@ -128,6 +141,9 @@
     <span id="stop">finish</span>
     <span id="start">start</span>
     <canvas id="canvas" width="240" height="240"></canvas>
+    <div id="links">
+      <a href="http://www.github.com/etler/favitimer">View Readme on GitHub</a>
+    </div>
     <script type="text/javascript">
       (function () {
         var favicon = document.createElement('canvas'),
