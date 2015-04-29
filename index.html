@@ -325,10 +325,11 @@
           startTimer(hours, minutes, seconds);
         }
         function executeSearch (search) {
-          var searchRegex = /(\d+)[\s+]*(se?c?o?n?d?s?|mi?n?u?t?e?s?|ho?u?r?s?|$)(?![a-z])/gi,
+          var searchRegex = /(\d*\.?\d+)[\s+]*(se?c?o?n?d?s?|mi?n?u?t?e?s?|ho?u?r?s?|$)(?![a-z])/gi,
               hours = 0,
               minutes = 0,
               seconds = 0,
+              totalTime = 0,
               match, unit;
           while (match = searchRegex.exec(search)) {
             unit = match[2] || '';
@@ -345,6 +346,10 @@
                 break;
             }
           }
+          totalTime = 60 * 60 * hours + 60 * minutes + seconds;
+          hours = Math.floor(totalTime / (60 * 60)) % 60;
+          minutes = Math.floor(totalTime / 60) % 60;
+          seconds = Math.round(totalTime % 60);
           form.elements['hours'].focus();
           if (hours) {
             form.elements['hours'].value = hours;
