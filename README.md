@@ -20,7 +20,7 @@ You can run a timer through Chrome's tab to search functionality. After you visi
 * \# hrs
 * \# hours
 
-Input is flexible and typo tolerant. You can mix and match the formats in any order.
+Input is flexible and typo tolerant. You can mix and match the formats in any order. If there is no unit, seconds will be assumed.
 
 Examples:
 
