@@ -231,13 +231,16 @@
               startTime = new Date().getTime(),
               timeLeft = startTime;
           body.setAttribute('class', 'running');
-          clearInterval(interval);
+          if (interval) {
+            interval.postMessage({stop:true});
+          }
           clearInterval(beepInterval);
           draw(favicon, 0, totalTime);
           draw(canvas, 0);
           link.href = favicon.toDataURL('image/png');
           // Countdown update interval
-          interval = setInterval(function () {
+          interval = new Worker('interval.js');
+          interval.onmessage = function(event) {
             if (paused) {
               startTime = new Date().getTime() + timeLeft - totalTime;
               return;
@@ -250,9 +253,10 @@
             link.href = favicon.toDataURL('image/png');
             write(timeLeft);
             if (percentComplete >= 1) {
-              clearInterval(interval);
+              interval.postMessage({stop:true});
             }
-          }, 20);
+          };
+          interval.postMessage({start:true, ms:20});
         };
         function pauseTimer() {
           paused = true;
