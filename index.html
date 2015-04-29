@@ -155,8 +155,37 @@
             stop = document.getElementById('stop'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
-            interval, beepInterval, paused;
+            interval, beepInterval, paused, workerURL;
         favicon.height = favicon.width = 16; // set the size
+        (function () {
+          var blob, intervalWorker, workerString;
+          intervalWorker = function () {
+            var interval = null;
+            onmessage = function(event) {
+              if (event.data.start) {
+                interval = setInterval(function () {
+                  postMessage('');
+                }, event.data.ms);
+              }
+              if (event.data.stop) {
+                clearInterval(interval);
+              }
+            };
+          }
+          workerString = "("+intervalWorker.toString()+")();";
+          if (Blob) {
+            blob = new Blob([workerString], {type: 'application/javascript'});
+          } else if (BlobBuilder || WebKitBlobBuilder || MozBlobBuilder) {
+            blob = new (BlobBuilder || WebKitBlobBuilder || MozBlobBuilder)();
+            blob.append(workerString);
+            blob = blob.getBlob();
+          }
+          if (blob) {
+            workerURL = URL.createObjectURL(blob);
+          } else {
+            workerURL = 'interval.js';
+          }
+        })();
         function draw(canvas, percent, time) {
           var context = canvas.getContext('2d');
           diameter = Math.min(canvas.height, canvas.width);
@@ -196,7 +225,7 @@
         function startInterval (callback, delay) {
           var interval;
           try {
-            interval = new Worker('interval.js');
+            interval = new Worker(workerURL);
             interval.onmessage = callback;
             interval.postMessage({start: true, ms: delay});
           } catch (error) {
