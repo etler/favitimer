@@ -156,7 +156,8 @@
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
             interval, beepInterval, paused, workerURL;
-        favicon.height = favicon.width = 16; // set the size
+        favicon.height = favicon.width = 16;
+        // In-line web worker script setup
         (function () {
           var blob, intervalWorker, workerString;
           intervalWorker = function () {
@@ -186,6 +187,7 @@
             workerURL = 'interval.js';
           }
         })();
+        // Control functions
         function draw(canvas, percent, time) {
           var context = canvas.getContext('2d');
           diameter = Math.min(canvas.height, canvas.width);
@@ -301,7 +303,7 @@
           draw(favicon, 0, totalTime);
           draw(canvas, 0);
           link.href = favicon.toDataURL('image/png');
-          // Set up countdown interval
+          // Countdown interval setup
           interval = startInterval(startAnimation, 50)
         };
         function pauseTimer() {
@@ -353,6 +355,7 @@
           }
           submit();
         }
+        // Event setup
         stop.addEventListener('click', function (event) {
           stopInterval(beepInterval);
           body.setAttribute('class', 'complete');
@@ -391,6 +394,7 @@
             }
           });
         });
+        // Initialization
         draw(favicon, 1);
         link.href = favicon.toDataURL('image/png');
         executeSearch(decodeURIComponent(window.location.search));
