@@ -253,7 +253,7 @@
           startTimer(hours, minutes, seconds);
         }
         function executeSearch (search) {
-          var searchRegex = /(\d+)\s*(s(?:ec(?:ond)?s?)?|m(?:in(?:ute)?s?)?|h(?:(?:ou)?rs?)?|\b)(?![a-z])/gi,
+          var searchRegex = /(\d+)\s*(s(?:ec(?:ond)?s?)?|m(?:in(?:ute)?s?)?|h(?:(?:ou)?rs?)?|$)(?![a-z])/gi,
               hours = 0,
               minutes = 0,
               seconds = 0,
