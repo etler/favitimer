@@ -62,8 +62,18 @@
         display: block;
         margin: auto;
       }
-      span {
+      .disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .control {
         display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+      #timer {
         position: absolute;
         width: 240px;
         height: 240px;
@@ -73,11 +83,15 @@
         text-align: center;
         font-weight: bold;
         color: #333;
-        cursor: pointer;
       }
-      .disabled {
-        opacity: 0.4;
-        cursor: default;
+      #clear {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 20px;
+        z-index: 1;
+        cursor: pointer;
       }
       #stop, #text, #start {
         display: none;
@@ -85,6 +99,8 @@
       body.done #stop,
       body.running #text,
       body.pause #text,
+      body.running #clear,
+      body.pause #clear,
       body.complete #start {
         display: block;
       }
@@ -141,10 +157,13 @@
       </label>
       <button type="submit"></button>
     </form>
-    <span id="text"></span>
-    <span id="stop">finish</span>
-    <span id="start" class="disabled">start</span>
-    <canvas id="canvas" width="240" height="240"></canvas>
+    <div id="timer">
+      <span id="clear">×</span>
+      <span id="text" class="control"></span>
+      <span id="stop" class="control">finish</span>
+      <span id="start" class="control disabled">start</span>
+      <canvas id="canvas" width="240" height="240"></canvas>
+    </div>
     <div id="links">
       <a href="http://www.github.com/etler/favitimer">View Readme on GitHub</a>
     </div>
@@ -157,6 +176,7 @@
             text = document.getElementById('text'),
             start = document.getElementById('start'),
             stop = document.getElementById('stop'),
+            clear = document.getElementById('clear'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
             interval, beepInterval, paused, workerURL;
@@ -310,6 +330,11 @@
           // Countdown interval setup
           interval = startInterval(startAnimation, 50)
         };
+        function stopTimer(event) {
+          stopInterval(interval);
+          stopInterval(beepInterval);
+          body.setAttribute('class', 'complete');
+        }
         function pauseTimer() {
           paused = true;
           body.setAttribute('class', 'pause');
@@ -367,10 +392,8 @@
           submit();
         }
         // Event setup
-        stop.addEventListener('click', function (event) {
-          stopInterval(beepInterval);
-          body.setAttribute('class', 'complete');
-        });
+        stop.addEventListener('click', stopTimer);
+        clear.addEventListener('click', stopTimer);
         text.addEventListener('click', function (event) {
           if (paused) {
             resumeTimer();
