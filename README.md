@@ -25,8 +25,12 @@ Input is flexible and typo tolerant. You can mix and match the formats in any or
 Examples:
 
 * 30s
-* 20 mins
+* 20 minutes
 * 1 hr
 * 20 minute 30 seconds 1 hour
 * 1h20m30s
 * 1 hrs 20minutes 30 s
+
+##Compatibility
+
+Because Favitimer relies on the presence of a favicon, and the ability to update it, IE and Safari are not supported. IE does not allow updating of the browser tab favicon, and Safari does not display a tab favicon at all.
