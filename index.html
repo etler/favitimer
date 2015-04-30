@@ -62,16 +62,16 @@
         display: block;
         margin: auto;
       }
-      .disabled {
-        opacity: 0.4;
-        cursor: default;
-      }
-      .control {
+      nav {
         display: block;
         position: absolute;
         width: 100%;
         height: 100%;
         cursor: pointer;
+      }
+      .disabled {
+        opacity: 0.4;
+        cursor: default;
       }
       #timer {
         position: absolute;
@@ -159,9 +159,9 @@
     </form>
     <div id="timer">
       <span id="clear">×</span>
-      <span id="text" class="control"></span>
-      <span id="stop" class="control">finish</span>
-      <span id="start" class="control disabled">start</span>
+      <nav id="text"></nav>
+      <nav id="stop">finish</nav>
+      <nav id="start" class="disabled">start</nav>
       <canvas id="canvas" width="240" height="240"></canvas>
     </div>
     <div id="links">
