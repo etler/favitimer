@@ -8,7 +8,7 @@ To start a timer fill out the hours, minutes, or seconds that you want, and hit 
 
 ##Set Timer via Query
 
-You can run a timer through Chrome's tab to search functionality. After you visit favitimer.com, Chrome will create a search entry for the site. Type in favitimer.com, press tag, then type out the time you want to set the timer to. Valid input is in the format of:
+You can run a timer through Chrome's tab to search functionality. After you visit favitimer.com, Chrome will create a search entry for the site. Type in favitimer.com, press tab, then type out the time you want to set the timer to. Valid input is in the format of:
 
 * \# s
 * \# secs
