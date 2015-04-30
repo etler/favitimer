@@ -361,7 +361,27 @@
           paused = false;
           body.setAttribute('class', 'running');
         };
+        function normalizeForm() {
+          var hours = Number(form.elements['hours'].value || '0'),
+              minutes = Number(form.elements['minutes'].value || '0'),
+              seconds = Number(form.elements['seconds'].value || '0');
+          totalTime = 60 * 60 * hours + 60 * minutes + seconds;
+          totalTime = Math.min(totalTime, 100*60*60-1);
+          hours = Math.floor(totalTime / (60 * 60));
+          minutes = Math.floor(totalTime / 60) % 60;
+          seconds = Math.round(totalTime % 60);
+          if (hours) {
+            form.elements['hours'].value = hours;
+          }
+          if (hours || minutes) {
+            form.elements['minutes'].value = minutes;
+          }
+          if (hours || minutes || seconds) {
+            form.elements['seconds'].value = seconds;
+          }
+        }
         function submit() {
+          normalizeForm();
           hours = Number(form.elements['hours'].value || '0');
           minutes = Number(form.elements['minutes'].value || '0');
           seconds = Number(form.elements['seconds'].value || '0');
