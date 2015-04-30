@@ -179,7 +179,7 @@
             clear = document.getElementById('clear'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
-            interval, beepInterval, paused, workerURL;
+            interval, completeInterval, paused, workerURL;
         favicon.height = favicon.width = 16;
         // In-line web worker script setup
         (function () {
@@ -212,7 +212,7 @@
           }
         })();
         // Control functions
-        function draw(canvas, percent, time) {
+        function draw(canvas, percent, time, color) {
           var context = canvas.getContext('2d');
           diameter = Math.min(canvas.height, canvas.width);
           context.lineWidth = diameter / 12;
@@ -221,6 +221,7 @@
           } else {
             context.strokeStyle = '#dd0000';
           }
+          context.strokeStyle = color || context.strokeStyle;
           context.font = 'bold 7.5px monospace';
           context.textAlign = 'center';
           context.fillStyle = '#333333';
@@ -228,7 +229,7 @@
           context.beginPath();
           context.arc(diameter/2,diameter/2,diameter*0.375,-Math.PI/2,-Math.PI/2+Math.PI*2*percent,false);
           context.stroke();
-          if (time) {
+          if (time > 0) {
             time /= 1000;
             time = Math.ceil(time);
             if (time > 60) time /= 60;
@@ -264,7 +265,20 @@
           var seconds = Math.ceil(time / 1000) % 60,
               minutes = Math.floor(Math.ceil(time / 1000) / 60) % 60,
               hours   = Math.floor(Math.ceil(time / 1000) / (60 * 60)),
-              titleText = '';
+              titleText = '', on = false, complete;
+          complete = function () {
+            var color;
+            beep();
+            if (on){
+              color = '#00cc00';
+              on = false;
+            } else {
+              color = '#dd0000';
+              on = true;
+            }
+            draw(favicon, 1, 0, color);
+            link.href = favicon.toDataURL('image/png');
+          }
           titleText = '';
           if (hours) {
             titleText += hours + "h ";
@@ -279,7 +293,7 @@
             title.text = 'Done!';
             text.innerHTML = titleText;
             beep();
-            beepInterval = startInterval(beep, 1100);
+            completeInterval = startInterval(complete, 1000);
             body.setAttribute('class', 'done');
           } else {
             title.text = titleText;
@@ -323,7 +337,7 @@
           };
           body.setAttribute('class', 'running');
           stopInterval(interval);
-          stopInterval(beepInterval);
+          stopInterval(completeInterval);
           draw(favicon, 0, totalTime);
           draw(canvas, 0);
           write(totalTime);
@@ -333,7 +347,7 @@
         };
         function stopTimer(event) {
           stopInterval(interval);
-          stopInterval(beepInterval);
+          stopInterval(completeInterval);
           body.setAttribute('class', 'complete');
         }
         function pauseTimer() {
