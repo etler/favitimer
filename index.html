@@ -349,6 +349,8 @@
         function stopTimer(event) {
           stopInterval(interval);
           stopInterval(completeInterval);
+          drawFavicon(favicon, 1);
+          title.text = 'Done!';
           body.setAttribute('class', 'complete');
         }
         function pauseTimer() {
