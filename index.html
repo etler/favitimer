@@ -397,6 +397,8 @@
           seconds = Math.round(totalTime % 60);
           if (!hours && !minutes && !seconds) {
             form.elements['hours'].focus();
+          } else {
+            start.removeAttribute('class');
           }
           if (hours) {
             form.elements['hours'].value = hours;
