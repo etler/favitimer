@@ -346,11 +346,11 @@
           // Countdown interval setup
           interval = startInterval(startAnimation, 50)
         };
-        function stopTimer(event) {
+        function clearTimer(event) {
           stopInterval(interval);
           stopInterval(completeInterval);
           drawFavicon(favicon, 1);
-          title.text = 'Done!';
+          title.text = 'Favicon Countdown Timer';
           body.setAttribute('class', 'complete');
         }
         function pauseTimer() {
@@ -412,8 +412,8 @@
           submit();
         }
         // Event setup
-        stop.addEventListener('click', stopTimer);
-        clear.addEventListener('click', stopTimer);
+        stop.addEventListener('click', clearTimer);
+        clear.addEventListener('click', clearTimer);
         text.addEventListener('click', function (event) {
           if (paused) {
             resumeTimer();
