@@ -20,13 +20,14 @@ You can run a timer through Chrome's tab to search functionality. After you visi
 * \# hrs
 * \# hours
 
-Input is flexible and typo tolerant. You can mix and match the formats in any order. If there is no unit, seconds will be assumed.
+Input is flexible and typo tolerant. You can mix and match the formats in any order. If there is no unit, seconds will be assumed. The number value can be any number or a fraction or a decimal.
 
 Examples:
 
 * 30s
 * 20 minutes
-* 1 hr
+* 1/2 hr
+* .2 hour
 * 20 minute 30 seconds 1 hour
 * 1h20m30s
 * 1 hrs 20minutes 30 s
