@@ -175,7 +175,7 @@
             interval, completeInterval, paused, workerURL;
         favicon.height = favicon.width = 16;
         // In-line web worker script setup
-        (function () {
+        workerURL = (function () {
           var blob, intervalWorker, workerString;
           intervalWorker = function () {
             var interval = null;
@@ -199,9 +199,9 @@
             blob = blob.getBlob();
           }
           if (blob) {
-            workerURL = URL.createObjectURL(blob);
+            return URL.createObjectURL(blob);
           } else {
-            workerURL = 'interval.js';
+            return 'interval.js';
           }
         })();
         // Control functions
