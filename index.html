@@ -360,6 +360,7 @@
         };
 
         function clearTimer(event) {
+          paused = false;
           stopInterval(updateInterval);
           stopInterval(blinkInterval);
           drawFavicon(favicon, 1);
