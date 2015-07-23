@@ -2,5 +2,5 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
    <ShortName>Favitimer</ShortName>
    <Description>Enter a period of time to set a timer.</Description>
-   <Url type="text/html" method="get" template="http://www.favitimer.com/?q={searchTerms}"/>
+   <Url type="text/html" method="get" template="http://www.favitimer.com/?{searchTerms}"/>
 </OpenSearchDescription>
