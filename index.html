@@ -391,12 +391,18 @@
           seconds = Math.round(totalTime % 60);
           if (hours) {
             form.elements.hours.value = hours;
+          } else {
+            form.elements.hours.value = '';
           }
           if (hours || minutes) {
             form.elements.minutes.value = minutes;
+          } else {
+            form.elements.minutes.value = '';
           }
           if (hours || minutes || seconds) {
             form.elements.seconds.value = seconds;
+          } else {
+            form.elements.seconds.value = '';
           }
         }
 
