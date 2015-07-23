@@ -168,7 +168,7 @@
             clear = document.getElementById('clear'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
-            interval, completeInterval, paused, workerURL;
+            interval, blinkInterval, paused, workerURL;
         favicon.height = favicon.width = 16;
         // In-line web worker script setup
         workerURL = (function () {
@@ -286,7 +286,7 @@
             title.text = 'Done!';
             text.innerHTML = titleText;
             beep();
-            completeInterval = startInterval(complete, 1000);
+            blinkInterval = startInterval(complete, 1000);
             body.setAttribute('class', 'done');
           } else {
             title.text = titleText;
@@ -329,7 +329,7 @@
           };
           body.setAttribute('class', 'running');
           stopInterval(interval);
-          stopInterval(completeInterval);
+          stopInterval(blinkInterval);
           drawFavicon(favicon, 0, totalTime);
           draw(canvas, 0);
           write(totalTime);
@@ -338,7 +338,7 @@
         };
         function clearTimer(event) {
           stopInterval(interval);
-          stopInterval(completeInterval);
+          stopInterval(blinkInterval);
           drawFavicon(favicon, 1);
           title.text = 'Favicon Countdown Timer';
           body.setAttribute('class', 'complete');
