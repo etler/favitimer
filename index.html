@@ -158,6 +158,7 @@
     </div>
     <script type="text/javascript">
       (function () {
+        "use strict";
         // Setup element references and global state
         var favicon = document.createElement('canvas'),
             canvas = document.getElementById('canvas'),
@@ -209,7 +210,8 @@
 
         // Drawing Methods
         function draw(canvas, percent, ms, color) {
-          var context = canvas.getContext('2d');
+          var context = canvas.getContext('2d'),
+              diameter;
           diameter = Math.min(canvas.height, canvas.width);
           context.lineWidth = diameter / 12;
           if (percent >= 1){
@@ -379,9 +381,9 @@
         function normalizeForm() {
           var hours = Number(form.elements['hours'].value || '0'),
               minutes = Number(form.elements['minutes'].value || '0'),
-              seconds = Number(form.elements['seconds'].value || '0');
-          totalTime = 60 * 60 * hours + 60 * minutes + seconds;
-          totalTime = Math.min(totalTime, 100*60*60-1);
+              seconds = Number(form.elements['seconds'].value || '0'),
+              totalTime = 60 * 60 * hours + 60 * minutes + seconds;
+          totalTime = Math.min(totalTime, 100 * 60 * 60 - 1);
           hours = Math.floor(totalTime / (60 * 60));
           minutes = Math.floor(totalTime / 60) % 60;
           seconds = Math.round(totalTime % 60);
@@ -397,6 +399,7 @@
         }
 
         function submit() {
+          var hours, minutes, seconds;
           normalizeForm();
           hours = Number(form.elements['hours'].value || '0');
           minutes = Number(form.elements['minutes'].value || '0');
