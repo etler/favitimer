@@ -109,8 +109,10 @@
         display: none;
       }
       body.pause #text {
-        animation: blink 1s steps(2, end) infinite reverse;
         -webkit-animation: blink 1s steps(2, end) infinite reverse;
+           -moz-animation: blink 1s steps(2, end) infinite reverse;
+             -o-animation: blink 1s steps(2, end) infinite reverse;
+                animation: blink 1s steps(2, end) infinite reverse;
       }
       #links {
         position: absolute;
@@ -125,16 +127,10 @@
         color: #333;
         text-decoration: none;
       }
-      @keyframes blink {
-        to {
-          opacity: 0;
-        }
-      }
-      @-webkit-keyframes blink {
-        to {
-          opacity: 0;
-        }
-      }
+      @-webkit-keyframes blink { to { opacity: 0; } }
+         @-moz-keyframes blink { to { opacity: 0; } }
+           @-o-keyframes blink { to { opacity: 0; } }
+              @keyframes blink { to { opacity: 0; } }
     </style>
   </head>
   <body class="complete">
