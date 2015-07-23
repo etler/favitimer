@@ -201,7 +201,7 @@
           }
         })();
         // Control functions
-        function draw(canvas, percent, time, color) {
+        function draw(canvas, percent, ms, color) {
           var context = canvas.getContext('2d');
           diameter = Math.min(canvas.height, canvas.width);
           context.lineWidth = diameter / 12;
@@ -218,16 +218,16 @@
           context.beginPath();
           context.arc(diameter/2,diameter/2,diameter*0.375,-Math.PI/2,-Math.PI/2+Math.PI*2*percent,false);
           context.stroke();
-          if (time > 0) {
-            time /= 1000;
-            time = Math.ceil(time);
-            if (time > 60) time /= 60;
-            if (time > 60) time /= 60;
-            time = Math.floor(time);
-            context.fillText(time, 8, 11, 10);
+          if (ms > 0) {
+            ms /= 1000;
+            ms = Math.ceil(ms);
+            if (ms > 60) ms /= 60;
+            if (ms > 60) ms /= 60;
+            ms = Math.floor(ms);
+            context.fillText(ms, 8, 11, 10);
           }
         };
-        function drawFavicon(canvas, percent, time, color) {
+        function drawFavicon(canvas, percent, ms, color) {
           draw.apply(this, arguments);
           link.href = canvas.toDataURL('image/png');
         }
