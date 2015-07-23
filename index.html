@@ -384,7 +384,6 @@
               seconds = 0,
               totalTime = 0,
               match, unit;
-          search = search.replace(/\?\w+=/, '').toLowerCase();
           while (match = searchRegex.exec(search)) {
             unit = match[2] || '';
             // Eval allows for division. This is only as safe as the reg-ex parsing is.
