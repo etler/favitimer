@@ -400,11 +400,6 @@
                 break;
             }
           }
-          totalTime = 60 * 60 * hours + 60 * minutes + seconds;
-          totalTime = Math.min(totalTime, 100*60*60-1);
-          hours = Math.floor(totalTime / (60 * 60));
-          minutes = Math.floor(totalTime / 60) % 60;
-          seconds = Math.round(totalTime % 60);
           if (!hours && !minutes && !seconds) {
             form.elements['hours'].focus();
           } else {
