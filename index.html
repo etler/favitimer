@@ -240,6 +240,7 @@
             clearInterval(interval);
           } else if (interval) {
             interval.postMessage({stop:true});
+            interval.terminate();
           }
         }
         function startInterval (callback, delay) {
