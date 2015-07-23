@@ -425,21 +425,13 @@
             }
           }
           // Fill out the form with input
-          if (!hours && !minutes && !seconds) {
-            form.elements.hours.focus();
-          } else {
+          if (hours || minutes || seconds) {
             start.removeAttribute('class');
+            if (hours)   { form.elements.hours.value   = hours;   }
+            if (minutes) { form.elements.minutes.value = minutes; }
+            if (seconds) { form.elements.seconds.value = seconds; }
+            submit();
           }
-          if (hours) {
-            form.elements.hours.value = hours;
-          }
-          if (minutes) {
-            form.elements.minutes.value = minutes;
-          }
-          if (seconds) {
-            form.elements.seconds.value = seconds;
-          }
-          submit();
         }
 
         // Event Setup
@@ -500,7 +492,11 @@
         });
         // Initialization
         drawFavicon(favicon, 1);
-        executeSearch(decodeURIComponent(window.location.search));
+        if (window.location.search) {
+          executeSearch(decodeURIComponent(window.location.search));
+        } else {
+          form.elements.hours.focus();
+        }
       })();
     </script>
     <!-- Google Analytics -->
