@@ -316,16 +316,6 @@
 
         // Control Methods
         function startTimer(hours, minutes, seconds) {
-          if (seconds == null) {
-            seconds = minutes;
-            minutes = hours;
-            hours = 0;
-          }
-          if (seconds == null ) {
-            seconds = minutes;
-            minutes = 0;
-            hours = 0;
-          }
           if (!seconds && !minutes && !hours) {
             return;
           }
