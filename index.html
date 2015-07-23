@@ -169,7 +169,7 @@
             clear = document.getElementById('clear'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
-            interval, blinkInterval, paused, workerURL;
+            updateInterval, blinkInterval, paused, workerURL;
 
         // Hidden canvas setup
         favicon.height = favicon.width = 16;
@@ -344,21 +344,21 @@
             draw(canvas, percentComplete);
             write(timeLeft);
             if (percentComplete >= 1) {
-              stopInterval(interval);
+              stopInterval(updateInterval);
             }
           };
           body.setAttribute('class', 'running');
-          stopInterval(interval);
+          stopInterval(updateInterval);
           stopInterval(blinkInterval);
           drawFavicon(favicon, 0, totalTime);
           draw(canvas, 0);
           write(totalTime);
           // Countdown interval setup
-          interval = startInterval(startAnimation, 50)
+          updateInterval = startInterval(startAnimation, 50)
         };
 
         function clearTimer(event) {
-          stopInterval(interval);
+          stopInterval(updateInterval);
           stopInterval(blinkInterval);
           drawFavicon(favicon, 1);
           title.text = 'Favicon Countdown Timer';
