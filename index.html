@@ -393,6 +393,7 @@
 
         function submit() {
           var hours, minutes, seconds;
+          paused = false;
           normalizeForm();
           hours = Number(form.elements.hours.value || '0');
           minutes = Number(form.elements.minutes.value || '0');
