@@ -207,8 +207,8 @@
           // Use Blob to create a temporary URL for the worker script
           if (Blob) {
             blob = new Blob([workerString], {type: 'application/javascript'});
-          } else if (BlobBuilder || WebKitBlobBuilder || MozBlobBuilder) {
-            Builder = BlobBuilder || WebKitBlobBuilder || MozBlobBuilder;
+          } else if (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder) {
+            Builder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
             blob = new Builder();
             blob.append(workerString);
             blob = blob.getBlob();
