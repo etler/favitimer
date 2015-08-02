@@ -13,9 +13,7 @@
     <meta property="twitter:title" content="Favicon Countdown Timer" />
     <meta property="twitter:description" content="Favitimer puts your countdown timer in your favicon, allowing you to see your timer from any tab at a glance." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta itemprop="name" content="Favicon Countdown Timer" />
-    <meta itemprop="description" content="Favitimer puts your countdown timer in your favicon, allowing you to see your timer from any tab at a glance." />
-    <link id="favicon" rel="icon" type="image/png" />
+    <link id="favicon" rel="icon" type="image/png" href="/"/>
     <link type="application/opensearchdescription+xml" rel="search" href="/search.xml"/>
     <style type="text/css">
       html, body {
@@ -145,13 +143,13 @@
   <body class="complete">
     <form id="form">
       <label>
-        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" />h
+        <input type="text" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" />h
       </label>
       <label>
-        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
+        <input type="text" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
       </label>
       <label>
-        <input type="text" inputmode="numeric" max="60" min="0" maxlength="2" name="seconds" placeholder="0" autocomplete="off" pattern="\d*" />s
+        <input type="text" maxlength="2" name="seconds" placeholder="0" autocomplete="off" pattern="\d*" />s
       </label>
       <button type="submit"></button>
     </form>
