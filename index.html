@@ -177,7 +177,10 @@
             clear = document.getElementById('clear'),
             form = document.getElementById('form'),
             body = document.getElementsByTagName('body')[0],
-            updateInterval, blinkInterval, paused, workerURL;
+            updateInterval,
+            blinkInterval,
+            paused,
+            workerURL;
 
         // Hidden canvas setup
         favicon.height = 16;
@@ -201,7 +204,7 @@
             };
           };
           // Execute setup function when run from the web worker
-          workerString = "("+intervalWorker.toString()+")();";
+          workerString = "(" + intervalWorker.toString() + ")();";
           // Use Blob to create a temporary URL for the worker script
           if (Blob) {
             blob = new Blob([workerString], {type: 'application/javascript'});
