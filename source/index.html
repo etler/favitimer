@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title id="title">Favicon Countdown Timer</title>
+    <meta charset="utf-8" />
+    <meta name="copyright" content="&amp;copy; 2015 Tim Etler All rights reserved." />
+    <meta name="description" content="Favitimer puts your countdown timer in your favicon, allowing you to see your timer from any tab at a glance." />
+    <meta property="og:site_name" content="Favitimer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Favicon Countdown Timer" />
+    <meta property="og:description" content="Favitimer puts your countdown timer in your favicon, allowing you to see your timer from any tab at a glance." />
+    <meta property="twitter:url" content="http://www.favitimer.com">
+    <meta property="twitter:title" content="Favicon Countdown Timer" />
+    <meta property="twitter:description" content="Favitimer puts your countdown timer in your favicon, allowing you to see your timer from any tab at a glance." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link id="favicon" rel="icon" type="image/png" href="/"/>
+    <link type="application/opensearchdescription+xml" rel="search" href="/search.xml"/>
+    <link href="./style.css" rel="stylesheet" ></style>
+  </head>
+  <body class="complete">
+    <form id="form">
+      <label>
+        <input type="text" maxlength="2" name="hours" placeholder="0" autocomplete="off" pattern="\d*" />h
+      </label>
+      <label>
+        <input type="text" maxlength="2" name="minutes" placeholder="0" autocomplete="off" pattern="\d*" />m
+      </label>
+      <label>
+        <input type="text" maxlength="2" name="seconds" placeholder="0" autocomplete="off" pattern="\d*" />s
+      </label>
+      <button type="submit"></button>
+    </form>
+    <div id="timer">
+      <span id="clear">×</span>
+      <nav id="text"></nav>
+      <nav id="stop">finish</nav>
+      <nav id="start" class="disabled">start</nav>
+      <canvas id="canvas" width="240" height="240"></canvas>
+    </div>
+    <div id="links">
+      <a href="http://www.github.com/etler/favitimer">View Readme on GitHub</a>
+    </div>
+    <script type="text/javascript" src="./script.js"></script>
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-62406207-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
