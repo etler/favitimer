@@ -3,6 +3,7 @@ var
   inline = require('gulp-inline'),
   uglify = require('gulp-uglify'),
   minifyCss = require('gulp-minify-css');
+  minifyHTML = require('gulp-minify-html');
 
 gulp.task('inline', function () {
   return gulp
@@ -12,6 +13,7 @@ gulp.task('inline', function () {
       js: uglify(),
       css: minifyCss()
     }))
+    .pipe(minifyHTML())
     .pipe(gulp.dest('public/'));
 });
 
