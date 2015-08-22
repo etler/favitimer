@@ -25,10 +25,10 @@
     var blob, intervalWorker, workerString, Builder;
     intervalWorker = function () {
       var interval = null;
-      this.onmessage = function(event) {
+      onmessage = function(event) {
         if (event.data.start && !interval) {
           interval = setInterval(function () {
-            this.postMessage('');
+            postMessage('');
           }, event.data.ms);
         }
         if (event.data.stop) {
