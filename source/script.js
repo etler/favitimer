@@ -93,28 +93,29 @@
   }
 
   // Audio Methods
-  audioContext = new (window.AudioContext || window.webkitAudioContext || window.audioContext);
+  audioContext = new (window.AudioContext || window.webkitAudioContext || window.audioContext || function () {});
+
   // Set up an audio context oscillator to create a beep with the provided parameters
   function beep (duration, frequency, volume) {
-    var oscillator, gainNode;
-    duration = duration || 500;
-    // Create audio node components
-    oscillator = audioContext.createOscillator();
-    gainNode = audioContext.createGain();
-    // Connect audio node components
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    // Assign audio node component parameters
-    gainNode.gain.value = 0;
-    oscillator.frequency.value = frequency;
-    // Begin playing audio for a set period of time
-    oscillator.start();
-    // Set up quick gradual volume transitions to prevent popping noise
-    gainNode.gain.setTargetAtTime(volume, audioContext.currentTime, 0.005);
-    gainNode.gain.setTargetAtTime(0, audioContext.currentTime + (duration / 1000), 0.005);
+    if (audioContext) {
+      var oscillator, gainNode;
+      duration = duration || 500;
+      // Create audio node components
+      oscillator = audioContext.createOscillator();
+      gainNode = audioContext.createGain();
+      // Connect audio node components
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      // Assign audio node component parameters
+      gainNode.gain.value = 0;
+      oscillator.frequency.value = frequency;
+      // Begin playing audio for a set period of time
+      oscillator.start();
+      // Set up quick gradual volume transitions to prevent popping noise
+      gainNode.gain.setTargetAtTime(volume, audioContext.currentTime, 0.005);
+      gainNode.gain.setTargetAtTime(0, audioContext.currentTime + (duration / 1000), 0.005);
+    }
   };
-
-  stopSequence = function () {};
 
   // Play a sequence of beeps based on an array of time intervals between beeps
   function playSequence (sequence, repeat) {
@@ -139,6 +140,8 @@
     // Return the continuation function so the caller can later cancel sequence
     return stopSequence;
   }
+
+  stopSequence = function () {};
 
   // Timing Methods
   function stopInterval (interval) {
