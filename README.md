@@ -35,3 +35,7 @@ Examples:
 ##Compatibility
 
 Because Favitimer relies on the presence of a favicon, and the ability to update it, IE and Safari are not supported. IE does not allow updating of the browser tab favicon, and Safari does not display a tab favicon at all.
+
+Sound will not work in Internet Explorer because AudioContext is not supported.
+
+Favicons will update less frequently in browsers that do not support Web Workers.
