@@ -194,7 +194,7 @@
     if (!hours && !minutes && !seconds) {
       title.text = 'Done!';
       text.innerHTML = titleText;
-      stopSequence = playSequence([200, 200, 1000], true);
+      stopSequence = playSequence([250, 250, 1000], true);
       blinkInterval = startInterval(complete, 1000);
       body.setAttribute('class', 'done');
     } else {
