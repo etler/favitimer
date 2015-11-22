@@ -93,7 +93,7 @@
   }
 
   // Audio Methods
-  audioContext = new (window.AudioContext || window.webkitAudioContext || window.audioContext || function () {});
+  audioContext = new (window.AudioContext || window.webkitAudioContext || window.audioContext || function () {})();
 
   // Set up an audio context oscillator to create a beep with the provided parameters
   function beep (duration, frequency, volume) {
@@ -115,7 +115,7 @@
       gainNode.gain.setTargetAtTime(volume, audioContext.currentTime, 0.005);
       gainNode.gain.setTargetAtTime(0, audioContext.currentTime + (duration / 1000), 0.005);
     }
-  };
+  }
 
   // Play a sequence of beeps based on an array of time intervals between beeps
   function playSequence (sequence, repeat) {
@@ -130,11 +130,11 @@
         next = doBeep.bind({}, index + 1);
         interval = startInterval(next, timeout);
       }
-    }
+    };
     // A continuation function for stopping this rhythm function
     stopSequence = function () {
       stopInterval(interval);
-    }
+    };
     // Start the beep sequence
     doBeep(0);
     // Return the continuation function so the caller can later cancel sequence
