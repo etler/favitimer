@@ -93,7 +93,7 @@
   }
 
   // Audio Methods
-  audioContext = new (window.AudioContext || window.webkitAudioContext || window.audioContext || function () {})();
+  audioContext = new (window.AudioContext || window.webkitAudioContext || function () {})();
 
   // Set up an audio context oscillator to create a beep with the provided parameters
   function beep (duration, frequency, volume) {
