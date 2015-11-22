@@ -2,16 +2,18 @@ var
   gulp = require('gulp'),
   inline = require('gulp-inline'),
   uglify = require('gulp-uglify'),
-  minifyCss = require('gulp-minify-css');
-  minifyHTML = require('gulp-minify-html');
+  postCSS = require('gulp-postcss'),
+  minifyHTML = require('gulp-minify-html'),
+  cssnano = require('cssnano'),
+  autoprefixer = require('autoprefixer');
 
 gulp.task('inline', function () {
   return gulp
     .src('source/index.html')
     .pipe(inline({
       base: 'source/',
-      js: uglify(),
-      css: minifyCss()
+      js: uglify,
+      css: postCSS.bind(this, [autoprefixer, cssnano])
     }))
     .pipe(minifyHTML())
     .pipe(gulp.dest('public/'));
