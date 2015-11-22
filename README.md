@@ -28,9 +28,9 @@ Examples:
 * 20 minutes
 * 1/2 hr
 * .2 hour
-* 20 minute 30 seconds 1 hour
+* 1 hour 20 minute and 30 seconds
 * 1h20m30s
-* 1 hrs 20minutes 30 s
+* 20minutes 30 s 1 hrs
 
 ##Compatibility
 
