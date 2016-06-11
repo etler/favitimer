@@ -25,7 +25,7 @@ form {
   color: white;
 }
 
-input {
+form input {
   color: #333;
   font-weight: bold;
   display: inline-block;
@@ -34,11 +34,10 @@ input {
   text-align: right;
   border: 0;
   font-size: inherit;
-  margin-right: 0.1em;
-  margin-left: 0.3em;
+  margin: 0 0.1em 0 0.3em;
 }
 
-input:focus, button:focus {
+form input:focus, button:focus {
   outline: none;
   box-shadow: 0 2px currentcolor;
 }
@@ -90,6 +89,7 @@ nav {
 
 #stop, #text, #start {
   display: none;
+  user-select: none;
 }
 
 body.done #stop,
@@ -109,16 +109,30 @@ body.pause #text {
   animation: blink 1s steps(2, end) infinite reverse;
 }
 
-#links {
+#links, #options {
   position: absolute;
-  bottom: 0;
-  right: 2em;
   font-size: 11px;
+  padding: 1em 0;
 }
 
-a {
-  display: inline-block;
-  padding: 1em 0;
+#links {
+  bottom: 0;
+  right: 2em;
+}
+
+#options {
+  bottom: 0;
+  left: 2em;
+  user-select: none;
+}
+
+#options input {
+  vertical-align: bottom;
+  margin: 0;
+}
+
+a, span {
+  display: inline;
   margin: 0 0.5em;
   color: #333;
   text-decoration: none;

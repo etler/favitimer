@@ -195,11 +195,16 @@
       titleText += seconds + "s";
     }
     if (!hours && !minutes && !seconds) {
-      title.text = 'Done!';
-      text.innerHTML = titleText;
-      stopSequence = playSequence([250, 250, 1000], true);
-      blinkInterval = startInterval(complete, 1000);
-      body.setAttribute('class', 'done');
+      if (document.getElementsByName('repeat')[0].checked === true) {
+        playSequence([0], false);
+        setTimeout(function () { submit(); }, 0);
+      } else {
+        title.text = 'Done!';
+        text.innerHTML = titleText;
+        stopSequence = playSequence([150, 150, 1000], true);
+        blinkInterval = startInterval(complete, 1000);
+        body.setAttribute('class', 'done');
+      }
     } else {
       title.text = titleText;
       text.innerHTML = titleText;
