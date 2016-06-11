@@ -62,7 +62,7 @@
     var context = canvas.getContext('2d'),
         diameter;
     diameter = Math.min(canvas.height, canvas.width);
-    context.lineWidth = diameter / 12;
+    context.lineWidth = diameter / 16;
     if (percent >= 1){
       context.strokeStyle = '#00cc00';
     } else {
