@@ -354,6 +354,13 @@
     if (event.keyCode === 13) {
       submit();
     }
+    if (event.keyCode === 32) {
+      if (paused) {
+        resumeTimer();
+      } else {
+        pauseTimer();
+      }
+    }
   });
   // Pause Timer
   text.addEventListener('click', function () {
