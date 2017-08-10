@@ -354,7 +354,7 @@
     if (event.keyCode === 13) {
       submit();
     }
-    if (event.keyCode === 32) {
+    if (event.keyCode === 32 && body.getAttribute('class').indexOf('complete') === -1) {
       if (paused) {
         resumeTimer();
       } else {
