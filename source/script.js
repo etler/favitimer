@@ -354,8 +354,11 @@
     if (event.keyCode === 13) {
       submit();
     }
+    // Space key
     if (event.keyCode === 32 && body.getAttribute('class').indexOf('complete') === -1) {
-      if (paused) {
+      if (body.getAttribute('class').indexOf('done') !== -1) {
+        clearTimer();
+      } else if (paused) {
         resumeTimer();
       } else {
         pauseTimer();
