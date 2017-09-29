@@ -17,13 +17,13 @@
     <link type="application/opensearchdescription+xml" rel="search" href="/search.xml"/>
     <link href="./style.css" rel="stylesheet" ></style>
     <!-- Google Analytics -->
+    <script type="text/javascript" src="./ga-lite.min.js"></script>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-62406207-1', 'auto');
-      ga('send', 'pageview');
+      galite('create', 'UA-62406207-1', 'auto');
+      galite('send', 'pageview');
+      window.addEventListener('unload', function () {
+        galite('send', 'timing', 'JS Dependencies', 'unload');
+      })
     </script>
   </head>
   <body class="complete">
