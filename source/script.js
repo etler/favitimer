@@ -168,7 +168,7 @@
   }
 
   // Timer Text Method
-  function write(time) {
+  function write (time) {
     var seconds = Math.ceil(time / 1000) % 60,
         minutes = Math.floor(Math.ceil(time / 1000) / 60) % 60,
         hours   = Math.floor(Math.ceil(time / 1000) / (60 * 60)),
@@ -205,7 +205,7 @@
         blinkInterval = startInterval(complete, 1000);
         body.setAttribute('class', 'done');
       }
-    } else {
+    } else if (text.innerHTML !== titleText) {
       title.text = titleText;
       text.innerHTML = titleText;
     }
@@ -219,7 +219,9 @@
     // Initialize
     var totalTime = hours * 60 * 60 * 1000 + minutes * 60 * 1000 + seconds * 1000,
         startTime = new Date().getTime(),
-        timeLeft = startTime,
+        timeLeft = totalTime,
+        lastFaviconTime = timeLeft,
+        lastTitleTime = timeLeft,
         startAnimation;
     startAnimation = function () {
       if (paused) {
@@ -229,9 +231,15 @@
       var currentTime = new Date().getTime(),
           percentComplete = (currentTime - startTime) / (totalTime);
       timeLeft = totalTime - currentTime + startTime;
-      drawFavicon(favicon, percentComplete, timeLeft);
       draw(canvas, percentComplete);
-      write(timeLeft);
+      if (lastFaviconTime - timeLeft > 100 || lastFaviconTime === totalTime || timeLeft <= 0) {
+        lastFaviconTime = timeLeft;
+        drawFavicon(favicon, percentComplete, timeLeft);
+      }
+      if (lastTitleTime - timeLeft > 100 || lastTitleTime === totalTime || timeLeft <= 0) {
+        lastTitleTime = timeLeft;
+        write(timeLeft);
+      }
       if (percentComplete >= 1) {
         stopInterval(updateInterval);
       }
@@ -244,7 +252,7 @@
     draw(canvas, 0);
     write(totalTime);
     // Countdown interval setup
-    updateInterval = startInterval(startAnimation, 50);
+    updateInterval = startInterval(startAnimation, 10);
   }
 
   function clearTimer() {
@@ -316,15 +324,16 @@
       unit = match[2] || '';
       // Eval allows for division. This is only as safe as the reg-ex parsing is.
       switch (unit[0]) {
-        case 'm':
-          minutes = eval(match[1]);
-          break;
         case 'h':
           hours = eval(match[1]);
           break;
-        // Also assume seconds if no unit
-        default:
+        case 's':
           seconds = eval(match[1]);
+          break;
+        case 'm':
+        // Assume minutes if no unit
+        default:
+          minutes = eval(match[1]);
           break;
       }
     }
