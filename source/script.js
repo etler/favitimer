@@ -96,7 +96,7 @@
   audioContext = new (window.AudioContext || window.webkitAudioContext || function () {})();
 
   // Set up an audio context oscillator to create a beep with the provided parameters
-  function beep (duration, frequency, volume) {
+  function beep (duration, frequency, volume, vibrate) {
     if (audioContext) {
       var oscillator, gainNode;
       duration = duration || 500;
@@ -114,6 +114,9 @@
       // Set up quick gradual volume transitions to prevent popping noise
       gainNode.gain.setTargetAtTime(volume, audioContext.currentTime, 0.005);
       gainNode.gain.setTargetAtTime(0, audioContext.currentTime + (duration / 1000), 0.005);
+      if (navigator.vibrate && vibrate) {
+        navigator.vibrate(duration);
+      }
     }
   }
 
@@ -126,7 +129,7 @@
       if (repeat) { index %= sequence.length; }
       timeout = sequence[index];
       if (typeof timeout === 'number') {
-        beep(100, 1000, 0.05);
+        beep(100, 1000, 0.05, document.getElementsByName('vibrate')[0].checked === true);
         next = doBeep.bind({}, index + 1);
         interval = startInterval(next, timeout);
       }
