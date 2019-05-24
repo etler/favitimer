@@ -424,3 +424,8 @@
     form.elements.hours.focus();
   }
 })();
+
+// Register service worker
+if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
+  navigator.serviceWorker.register('./serviceworker.js');
+}

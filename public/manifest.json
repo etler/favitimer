@@ -1,0 +1,21 @@
+{
+  "short_name": "Favitimer",
+  "name": "Favitimer",
+  "icons": [
+    {
+      "src": "./favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#2196F3",
+  "theme_color": "#2196F3",
+  "display": "standalone",
+  "scope": "/"
+}
