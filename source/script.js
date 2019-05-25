@@ -392,8 +392,11 @@
       if (event.keyCode && !event.charCode) {
         return;
       }
+      // Prevent overflow
       // Only allow digits
       if ((event.charCode < 48 || event.charCode > 57) && !event.ctrlKey) {
+        event.preventDefault();
+      } else if (event.charCode >= 48 && event.charCode <= 57 && event.currentTarget.value.length === 2) {
         event.preventDefault();
       }
     });
