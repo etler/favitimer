@@ -129,7 +129,7 @@
       if (repeat) { index %= sequence.length; }
       timeout = sequence[index];
       if (typeof timeout === 'number') {
-        beep(100, 1000, 0.2, document.getElementsByName('vibrate')[0].checked === true);
+        beep(100, 1000, 0.4, document.getElementsByName('vibrate')[0].checked === true);
         next = doBeep.bind({}, index + 1);
         interval = startInterval(next, timeout);
       }
